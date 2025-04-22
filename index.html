@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard Irigasi Otomatis</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --green: #16a34a;
+        --light-green: #bbf7d0;
+        --gray: #6b7280;
+        --bg: #f0fdf4;
+        --gradient-start: #38bdf8;
+        --gradient-end: #0ea5e9;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: var(--bg);
+        padding: 20px;
+        color: #333;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between; /* Flexbox untuk memberi ruang antara hamburger dan judul */
+        align-items: center;
+        padding: 10px 20px;
+        background-color: var(--bg);
+        position: relative;
+        z-index: 10;
+      }
+
+      .navbar h1 {
+        text-align: center;
+        flex-grow: 1;
+        margin: 0;
+      }
+
+      .hamburger {
+        font-size: 30px;
+        cursor: pointer;
+        color: var(--green);
+        position: absolute;
+        left: 20px; /* Memastikan logo hamburger lebih mepet ke kiri */
+        top: 10px;
+      }
+
+      h1 {
+        color: var(--green);
+        font-size: 32px;
+        margin-top: 10px; /* Mengurangi jarak atas judul */
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .card {
+        background: white;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        border: 2px solid var(--green);
+      }
+
+      .card i {
+        font-size: 40px;
+        margin-bottom: 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover i {
+        transform: rotate(20deg);
+      }
+
+      .kelembaban i {
+        color: #10b981;
+      }
+      .cuaca i {
+        color: #facc15;
+      }
+      .debit i {
+        color: #3b82f6;
+      }
+      .jadwal i {
+        color: #a855f7;
+      }
+
+      .card p {
+        color: var(--gray);
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .card h2 {
+        font-size: 24px;
+        color: var(--green);
+        margin-top: 5px;
+        margin-bottom: 10px;
+      }
+
+      .card small {
+        display: block;
+        font-size: 12px;
+        color: var(--gray);
+        margin-top: 2px;
+      }
+
+      .kontrol {
+        margin-top: 40px;
+        text-align: center;
+      }
+
+      .kontrol h2 {
+        font-size: 24px;
+        color: var(--green);
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .kontrol button {
+        width: 100%;
+        padding: 16px;
+        margin-bottom: 12px;
+        font-size: 18px;
+        border-radius: 12px;
+        cursor: pointer;
+        border: none;
+        transition: 0.3s;
+        background: linear-gradient(
+          90deg,
+          var(--gradient-start),
+          var(--gradient-end)
+        );
+        color: white;
+        font-weight: bold;
+      }
+
+      .kontrol button:hover {
+        background: linear-gradient(
+          90deg,
+          var(--gradient-end),
+          var(--gradient-start)
+        );
+      }
+
+      .btn-nonaktif {
+        background-color: white;
+        color: var(--green);
+        border: 2px solid var(--green);
+      }
+
+      .btn-nonaktif:hover {
+        background-color: var(--light-green);
+      }
+
+      .card .btn-nonaktif {
+        background-color: white;
+        color: var(--green);
+        border: 2px solid var(--green);
+      }
+
+      .btn-nonaktif:hover {
+        background-color: var(--light-green);
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: row;
+          justify-content: space-between;
+          text-align: left; /* Pastikan text-align pada mobile di kiri */
+        }
+        .navbar h1 {
+          margin-left: 0;
+          margin-top: 40px; /* Menambahkan jarak atas pada tampilan mobile */
+          margin-bottom: 10px;
+        }
+        .grid {
+          grid-template-columns: 1fr; /* Membuat grid menjadi satu kolom pada perangkat kecil */
+        }
+        .card {
+          padding: 20px;
+        }
+        h1 {
+          font-size: 28px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 24px;
+        }
+        .card h2 {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar & Hamburger Menu -->
+    <div class="navbar">
+      <i
+        class="ri-menu-3-line hamburger"
+        onclick="window.location.href='settings.html'"
+        Link
+        ke
+        Halaman
+        Pengaturan
+        --
+      >
+      </i>
+      <h1>Sistem Informasi Manajemen Irigasi Otomatis Perkebunan Sayur</h1>
+    </div>
+
+    <div class="grid">
+      <div class="card kelembaban">
+        <i class="ri-water-percent-line"></i>
+        <p>Kelembaban Tanah</p>
+        <h2>42%</h2>
+      </div>
+      <div class="card cuaca">
+        <i class="ri-sun-line"></i>
+        <p>Cuaca</p>
+        <h2>Cerah</h2>
+      </div>
+      <div class="card debit">
+        <i class="ri-speed-line"></i>
+        <p>Debit Air</p>
+        <h2>12 L/menit</h2>
+      </div>
+      <div class="card jadwal">
+        <i class="ri-calendar-check-line"></i>
+        <p>Status Jadwal</p>
+        <h2>Aktif</h2>
+        <small>Setiap hari pukul 06:00 & 17:00</small>
+        <small>Durasi: 15 menit</small>
+        <small>Terakhir menyiram: 22 Apr 2025, 06:00</small>
+        <small>Penyiraman berikutnya: 22 Apr 2025, 17:00</small>
+      </div>
+    </div>
+
+    <div class="kontrol">
+      <h2>Kontrol Irigasi</h2>
+      <button class="btn-aktif">Aktifkan Irigasi</button>
+      <button class="btn-nonaktif">Nonaktifkan Irigasi</button>
+    </div>
+  </body>
+</html>

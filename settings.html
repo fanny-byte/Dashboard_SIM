@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pengaturan</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --green: #0866d1;
+        --light-green: #bbf7d0;
+        --gray: #6b7280;
+        --bg: #f0fdf4;
+        --gradient-start: #38bdf8;
+        --gradient-end: #0ea5e9;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: var(--bg);
+        padding: 20px;
+        color: #333;
+      }
+
+      h1 {
+        color: #010401; /* Mengubah warna tulisan h1 menjadi hitam */
+        font-size: 32px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .section {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .section h2 {
+        font-size: 24px;
+        color: #07c207;
+        margin-bottom: 15px;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+      }
+
+      .input-group label {
+        display: block;
+        color: var(--gray);
+        margin-bottom: 5px;
+        font-weight: 500;
+      }
+
+      .input-group input,
+      .input-group select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid var(--gray);
+        background-color: #fff;
+        color: #333;
+      }
+
+      .input-group input:focus,
+      .input-group select:focus {
+        border-color: var(--green);
+        outline: none;
+      }
+
+      .input-group small {
+        display: block;
+        color: var(--gray);
+        font-size: 12px;
+      }
+
+      .switch {
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+      }
+
+      .switch input {
+        margin-left: 10px;
+        cursor: pointer;
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .button-group button {
+        padding: 12px 24px;
+        background-color: var(--green);
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .button-group button:hover {
+        background-color: var(--light-green);
+      }
+
+      .logout-button {
+        background-color: #f87171;
+        color: white;
+        font-weight: bold;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 15px;
+        width: 100%;
+      }
+
+      .logout-button:hover {
+        background-color: #ef4444;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Pengaturan</h1>
+
+    <div class="container">
+      <!-- Pengaturan Email Pengguna -->
+      <div class="section">
+        <h2>Email Pengguna</h2>
+        <div class="input-group">
+          <label for="email">Email Pengguna</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Masukkan Email Pengguna"
+            value="user@example.com"
+          />
+        </div>
+        <!-- Tombol Logout -->
+        <button class="logout-button">Logout</button>
+      </div>
+
+      <!-- Pengaturan Sistem Irigasi -->
+      <div class="section">
+        <h2>Pengaturan Sistem Irigasi</h2>
+        <div class="input-group">
+          <label for="jadwal">Jadwal Penyiraman</label>
+          <select id="jadwal">
+            <option value="harian">Harian</option>
+            <option value="mingguan">Mingguan</option>
+            <option value="manual">Manual</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="durasi">Durasi Penyiraman (menit)</label>
+          <input type="number" id="durasi" placeholder="Durasi Penyiraman" />
+        </div>
+        <div class="input-group">
+          <label for="threshold">Threshold Kelembaban (%)</label>
+          <input
+            type="number"
+            id="threshold"
+            placeholder="Masukkan Batas Kelembaban"
+          />
+        </div>
+      </div>
+
+      <!-- Pengaturan Cuaca dan Lingkungan -->
+      <div class="section">
+        <h2>Pengaturan Cuaca dan Lingkungan</h2>
+        <div class="input-group">
+          <label for="sensor-cuaca">Aktifkan Sensor Cuaca</label>
+          <div class="switch">
+            <label for="sensor-cuaca">Aktifkan</label>
+            <input type="checkbox" id="sensor-cuaca" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Pengaturan Keamanan -->
+      <div class="section">
+        <h2>Pengaturan Keamanan</h2>
+        <div class="input-group">
+          <label for="two-factor">Autentikasi Dua Faktor</label>
+          <div class="switch">
+            <label for="two-factor">Aktifkan</label>
+            <input type="checkbox" id="two-factor" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Tombol Simpan -->
+      <div class="button-group">
+        <button>Simpan Pengaturan</button>
+        <button onclick="window.location.href='index.html'">Batal</button>
+      </div>
+    </div>
+  </body>
+</html>
